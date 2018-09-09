@@ -31,7 +31,7 @@ module.exports = async function (ctx, next) {
 		logger.info(`Start ${ctx.method} "${ctx.originalUrl}" for ${ctx.request.ip}`)
 		await next();
 	} catch (err) {
-		logger.error(`Error ${ctx.method} "${ctx.originalUrl}" ${err.isBoom ? err.output.statusCode : err.status || 500} ${err.stack}`)
+		logger.error(`Error ${ctx.method} "${ctx.originalUrl}" ${err.status || 500} ${err.message} ${err.stack}`)
 		throw err
 	}
 	let ms = Date.now() - start;
